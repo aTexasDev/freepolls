@@ -1,5 +1,8 @@
 # Free Polls
 
+[![freepolls](og-image.png)](https://freepolls.app)
+
+
 Create free polls instantly with no signup required. The fastest free poll maker online - type your question and share in under 10 seconds. Anonymous voting with real-time results.
 
 **Live:** [freepolls.app](https://freepolls.app)
