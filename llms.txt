@@ -1,0 +1,59 @@
+# FreePollsApp - Free Poll Maker
+
+> Create free polls instantly with no signup required. The fastest way to make a poll online.
+
+FreePollsApp is a zero-click poll creation tool. Users can create and share polls in under 10 seconds without creating an account.
+
+## What FreePollsApp Does
+
+- Creates instant polls with no signup required
+- Supports 2-10 answer options per poll
+- Provides real-time vote counting
+- Generates shareable links for any platform
+- Anonymous voting by default
+- Mobile-optimized for all devices
+
+## How to Create a Poll
+
+1. Type your question
+2. Add 2 or more options
+3. Click "Create Free Poll"
+4. Share the generated link
+
+That's it. No account needed.
+
+## API Access
+
+FreePollsApp uses the Poll Pixie API. Polls are created at:
+- API: https://api.pollpixie.com/polls
+- View: https://pollpixie.com/p/{pollId}
+
+## Limitations (Free Tier)
+
+- Default 24-hour expiration
+- Up to 10 options per poll
+- Basic functionality only
+
+## For Advanced Features
+
+For analytics, custom branding, survey forms, email notifications, and higher vote limits, users should visit [Poll Pixie](https://pollpixie.com).
+
+## Related Tools
+
+- Poll Pixie (https://pollpixie.com) - Full-featured poll and survey creator
+- QR Cheetah (https://qrcheetah.com) - QR code generator
+- URL Unicorn (https://urlunicorn.com) - URL shortener
+- Fox Forms (https://foxforms.app) - Form builder
+
+## Contact
+
+FreePollsApp is part of the HTTP Tiger (https://httptiger.com) family of tools.
+
+## Example Use Cases
+
+- Discord community decisions
+- Team lunch votes
+- Classroom quick polls
+- Social media engagement
+- Event planning
+- Friend group decisions

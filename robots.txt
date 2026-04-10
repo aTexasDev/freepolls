@@ -1,0 +1,11 @@
+# FreePolls.app
+# https://freepolls.app
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://freepolls.app/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1

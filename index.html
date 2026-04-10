@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Poll Maker - Create Instant Polls in Seconds | FreePollsApp</title>
+    <meta name="description" content="Create free polls instantly with no signup required. The fastest free poll maker online - type your question and share in under 10 seconds. Anonymous voting, real-time results.">
+    <meta name="keywords" content="free poll maker, create poll free, online poll creator, instant poll, quick poll, anonymous poll, free voting, survey maker free, poll generator">
+    <link rel="canonical" href="https://freepolls.app">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#EC4899">
+
+    <meta property="og:title" content="Free Poll Maker - Create Instant Polls in Seconds">
+    <meta property="og:description" content="The fastest way to create free polls. No signup, no hassle. Just type and share.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://freepolls.app">
+    <meta property="og:image" content="https://freepolls.app/og-image.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Poll Maker - Create Polls Instantly">
+    <meta name="twitter:description" content="Create a poll in under 10 seconds. Free, fast, no signup required.">
+    <meta name="twitter:image" content="https://freepolls.app/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Schema.org WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Free Polls App",
+        "url": "https://freepolls.app",
+        "description": "Create free polls instantly with no signup required",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator": { "@type": "Organization", "name": "Poll Pixie", "url": "https://pollpixie.com" }
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Modern Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(236,72,153,0.3); } 50% { box-shadow: 0 0 40px rgba(236,72,153,0.6); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+        @keyframes grid-shift { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+        @keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1); } }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+        .animate-fadeInScale { animation: fadeInScale 0.5s ease-out forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .opacity-0 { opacity: 0; }
+
+        :root {
+            --pixie-pink: #EC4899;
+            --pixie-dark: #DB2777;
+            --pixie-light: #F472B6;
+            --pixie-glow: rgba(236,72,153,0.4);
+            --accent: #10b981;
+            --dark: #0a0a0f;
+            --dark-card: #18181b;
+            --dark-border: #27272a;
+            --text: #f4f4f5;
+            --text-muted: #a1a1aa;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--dark);
+            min-height: 100vh;
+        }
+
+        /* Animated Grid Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: none;
+            background-color: rgba(236,72,153,0.02);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+            animation: grid-shift 20s linear infinite;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s;
+        }
+
+        .logo:hover .logo-icon {
+            box-shadow: 0 6px 25px var(--pixie-glow);
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            background: var(--pixie-pink);
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white !important;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(236,72,153,0.15);
+            color: var(--pixie-pink);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(236,72,153,0.3);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--pixie-pink);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Poll Creator Card */
+        .poll-creator {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5),
+                        0 0 0 1px rgba(236,72,153,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            border: 2px solid var(--dark-border);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.03);
+            color: white;
+            transition: all 0.3s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .question-input:focus {
+            border-color: var(--pixie-pink);
+            box-shadow: 0 0 0 4px rgba(236,72,153,0.15);
+        }
+
+        .question-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .option-input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 2px solid var(--dark-border);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            color: white;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .option-input:focus {
+            border-color: var(--pixie-pink);
+        }
+
+        .btn-remove {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(239,68,68,0.15);
+            color: #ef4444;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-remove:hover {
+            background: rgba(239,68,68,0.25);
+        }
+
+        .btn-add {
+            padding: 12px 16px;
+            background: transparent;
+            border: 2px dashed var(--dark-border);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .btn-add:hover {
+            background: rgba(236,72,153,0.1);
+            border-color: var(--pixie-pink);
+            color: var(--pixie-pink);
+        }
+
+        .create-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--pixie-pink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px var(--pixie-glow);
+            margin-top: 10px;
+        }
+
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--pixie-glow);
+        }
+
+        .create-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success State */
+        .success-state {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(16,185,129,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .success-state h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .poll-url {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .poll-url input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid var(--dark-border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.03);
+            color: white;
+        }
+
+        .copy-btn {
+            padding: 14px 24px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #059669;
+        }
+
+        .poll-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .poll-actions a, .poll-actions button {
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid var(--pixie-pink);
+            color: var(--pixie-pink);
+            background: transparent;
+            font-size: 1rem;
+        }
+
+        .poll-actions a:hover, .poll-actions button:hover {
+            background: var(--pixie-pink);
+            color: white;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 20px;
+            background: rgba(236,72,153,0.03);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--pixie-pink);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-header h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .pricing-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--dark-card);
+            border: 2px solid var(--dark-border);
+            border-radius: 20px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(236,72,153,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--pixie-pink);
+            box-shadow: 0 10px 40px rgba(236,72,153,0.2);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pixie-pink);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pricing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            margin-bottom: 8px;
+        }
+
+        .pricing-price .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--pixie-pink);
+        }
+
+        .pricing-price .period {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-desc {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: var(--text);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .pricing-features li:last-child { border-bottom: none; }
+
+        .pricing-features .check {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn.primary {
+            background: var(--pixie-pink);
+            color: white;
+            box-shadow: 0 4px 20px var(--pixie-glow);
+        }
+
+        .pricing-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--pixie-glow);
+        }
+
+        .pricing-btn.secondary {
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border: 2px solid var(--dark-border);
+        }
+
+        .pricing-btn.secondary:hover {
+            background: rgba(236,72,153,0.1);
+            border-color: var(--pixie-pink);
+        }
+
+        .pricing-footer {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .pricing-footer p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .pricing-footer a {
+            color: var(--pixie-pink);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 20px;
+            background: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--pixie-pink);
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            padding: 0 24px 20px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid var(--dark-border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--pixie-pink);
+        }
+
+        .footer-brand {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-brand a {
+            color: var(--pixie-pink);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .poll-url { flex-direction: column; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <nav>
+        <a href="/" class="logo">
+            <img src="/logo-icon.png" alt="Free Polls" class="logo-icon" width="40" height="40" decoding="async">
+            Free Polls
+        </a>
+        <div class="nav-links">
+            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge opacity-0 animate-fadeInUp" data-i18n="hero.badge">Create polls in under 10 seconds</span>
+            <h1 class="opacity-0 animate-fadeInUp delay-100" data-i18n="hero.title">Free <span>Poll Maker</span></h1>
+            <p class="hero-subtitle opacity-0 animate-fadeInUp delay-200" data-i18n="hero.subtitle">No signup. No login. Just type your question and share.</p>
+
+            <div class="poll-creator opacity-0 animate-fadeInScale delay-300" id="pollCreator">
+                <div id="createForm">
+                    <div class="form-group">
+                        <label for="question" data-i18n="form.question.label">Your Question</label>
+                        <input type="text" id="question" class="question-input" placeholder="What should we do for team lunch?" maxlength="200" autofocus data-i18n="form.question.placeholder">
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="form.options.label">Options</label>
+                        <div class="options-container" id="optionsContainer">
+                            <div class="option-row">
+                                <input type="text" class="option-input" placeholder="Option 1" maxlength="100">
+                            </div>
+                            <div class="option-row">
+                                <input type="text" class="option-input" placeholder="Option 2" maxlength="100">
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add" id="addOption" data-i18n="form.addOption">+ Add Option</button>
+                    </div>
+
+                    <button type="button" class="create-btn" id="createBtn" data-i18n="form.createBtn">Create Free Poll</button>
+                </div>
+
+                <div id="successState" class="success-state">
+                    <div class="success-icon">&#10003;</div>
+                    <h2 data-i18n="success.title">Poll Created!</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;" data-i18n="success.subtitle">Share this link to start collecting votes</p>
+
+                    <div class="poll-url">
+                        <input type="text" id="pollUrlInput" readonly>
+                        <button class="copy-btn" id="copyBtn" data-i18n="success.copy">Copy</button>
+                    </div>
+
+                    <div class="poll-actions">
+                        <a href="#" id="viewPollBtn" target="_blank" data-i18n="success.viewPoll">View Poll</a>
+                        <button onclick="resetForm()" data-i18n="success.createAnother">Create Another</button>
+                    </div>
+
+                    <p style="margin-top: 24px; font-size: 0.9rem; color: var(--text-muted);" data-i18n="success.upsell">
+                        Want analytics and more features? <a href="https://pollpixie.com" style="color: var(--pixie-pink);">Sign up for Poll Pixie</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="pricing-header">
+            <span class="pricing-badge" data-i18n="pricing.badge">Upgrade</span>
+            <h2 data-i18n="pricing.title">Get More From Your Polls</h2>
+            <p data-i18n="pricing.subtitle">Need analytics, unlimited votes, or custom branding? Upgrade to Poll Pixie Pro.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-icon">&#127873;</div>
+                <h3 data-i18n="pricing.free.name">Free</h3>
+                <div class="pricing-price">
+                    <span class="price">$0</span>
+                    <span class="period" data-i18n="pricing.free.period">/forever</span>
+                </div>
+                <p class="pricing-desc" data-i18n="pricing.free.desc">Perfect for quick polls</p>
+                <ul class="pricing-features">
+                    <li data-i18n="pricing.free.f1"><span class="check">&#10003;</span> Unlimited polls</li>
+                    <li data-i18n="pricing.free.f2"><span class="check">&#10003;</span> Up to 100 votes per poll</li>
+                    <li data-i18n="pricing.free.f3"><span class="check">&#10003;</span> 24-hour poll duration</li>
+                    <li data-i18n="pricing.free.f4"><span class="check">&#10003;</span> Anonymous voting</li>
+                    <li data-i18n="pricing.free.f5"><span class="check">&#10003;</span> Basic results view</li>
+                </ul>
+                <span class="pricing-btn secondary" data-i18n="pricing.free.btn">Current Plan</span>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="popular-badge" data-i18n="pricing.pro.popular">Most Popular</div>
+                <div class="pricing-icon">&#11088;</div>
+                <h3 data-i18n="pricing.pro.name">Pro</h3>
+                <div class="pricing-price">
+                    <span class="price">$9</span>
+                    <span class="period" data-i18n="pricing.pro.period">/month</span>
+                </div>
+                <p class="pricing-desc" data-i18n="pricing.pro.desc">For power users</p>
+                <ul class="pricing-features">
+                    <li data-i18n="pricing.pro.f1"><span class="check">&#10003;</span> Everything in Free</li>
+                    <li data-i18n="pricing.pro.f2"><span class="check">&#10003;</span> <strong>Unlimited votes</strong></li>
+                    <li data-i18n="pricing.pro.f3"><span class="check">&#10003;</span> Advanced analytics</li>
+                    <li data-i18n="pricing.pro.f4"><span class="check">&#10003;</span> Custom poll expiration</li>
+                    <li data-i18n="pricing.pro.f5"><span class="check">&#10003;</span> Export results (CSV/JSON)</li>
+                    <li data-i18n="pricing.pro.f6"><span class="check">&#10003;</span> Remove branding</li>
+                </ul>
+                <a href="https://pollpixie.com/checkout?plan=pro" class="pricing-btn primary" data-i18n="pricing.pro.btn">Get Pro</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-icon">&#128188;</div>
+                <h3 data-i18n="pricing.biz.name">Business</h3>
+                <div class="pricing-price">
+                    <span class="price">$29</span>
+                    <span class="period" data-i18n="pricing.biz.period">/month</span>
+                </div>
+                <p class="pricing-desc" data-i18n="pricing.biz.desc">For teams</p>
+                <ul class="pricing-features">
+                    <li data-i18n="pricing.biz.f1"><span class="check">&#10003;</span> Everything in Pro</li>
+                    <li data-i18n="pricing.biz.f2"><span class="check">&#10003;</span> Custom branding</li>
+                    <li data-i18n="pricing.biz.f3"><span class="check">&#10003;</span> Team collaboration</li>
+                    <li data-i18n="pricing.biz.f4"><span class="check">&#10003;</span> API access</li>
+                    <li data-i18n="pricing.biz.f5"><span class="check">&#10003;</span> Webhook integrations</li>
+                    <li data-i18n="pricing.biz.f6"><span class="check">&#10003;</span> Priority support</li>
+                </ul>
+                <a href="https://pollpixie.com/checkout?plan=business" class="pricing-btn secondary" data-i18n="pricing.biz.btn">Get Business</a>
+            </div>
+        </div>
+
+        <div class="pricing-footer">
+            <p data-i18n="pricing.footer.trial">All paid plans include a 14-day free trial. No credit card required.</p>
+            <a href="https://pollpixie.com/pricing" data-i18n="pricing.footer.link">View all plans at Poll Pixie &rarr;</a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq.q1">Is this poll maker really free?</div>
+                <div class="faq-answer"><p data-i18n="faq.a1">Yes! FreePollsApp is 100% free to use. Create unlimited polls with no signup required. For advanced features like analytics and unlimited votes, upgrade through Poll Pixie.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq.q2">Do I need to create an account?</div>
+                <div class="faq-answer"><p data-i18n="faq.a2">No account required for basic polls! Just type your question, add options, and share the link. Sign up for Poll Pixie to save and manage your polls.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq.q3">Are the polls anonymous?</div>
+                <div class="faq-answer"><p data-i18n="faq.a3">Yes, all votes are anonymous by default. Voters don't need to sign up or provide any personal information.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq.q4">Can I see results in real-time?</div>
+                <div class="faq-answer"><p data-i18n="faq.a4">Absolutely! Poll results update in real-time as votes come in.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" data-i18n="faq.q5">What's the difference between FreePollsApp and Poll Pixie?</div>
+                <div class="faq-answer"><p data-i18n="faq.a5">FreePollsApp is the fast, free poll creator. Poll Pixie is the full platform with analytics, custom branding, unlimited votes, and team features.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-buttons">
+            <a href="javascript:void(0)" onclick="openContact()" data-i18n="footer.contact">Contact Us</a>
+            <a href="javascript:void(0)" onclick="openFeedback()" data-i18n="footer.feedback">Send Feedback</a>
+            <a href="javascript:void(0)" onclick="openSupport()" data-i18n="footer.support">Support</a>
+        </div>
+        <div class="footer-links">
+            <a href="https://pollpixie.com">Poll Pixie</a>
+            <a href="https://freepolls.org">FreePolls.org</a>
+            <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a>
+            <a href="/terms.html" data-i18n="footer.terms">Terms</a>
+        </div>
+        <p class="footer-brand" data-i18n="footer.brand">
+            A <a href="https://snapitsaas.com">SnapIT Zoo</a> product
+        </p>
+    </footer>
+
+    <script>
+        const API_URL = 'https://api.pollpixie.com';
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+        });
+
+        // Add Option
+        document.getElementById('addOption').addEventListener('click', () => {
+            const container = document.getElementById('optionsContainer');
+            const count = container.querySelectorAll('.option-row').length;
+            if (count >= 10) { alert('Maximum 10 options'); return; }
+
+            const row = document.createElement('div');
+            row.className = 'option-row';
+            row.innerHTML = `
+                <input type="text" class="option-input" placeholder="Option ${count + 1}" maxlength="100">
+                <button type="button" class="btn-remove" onclick="this.parentElement.remove()">x</button>
+            `;
+            container.appendChild(row);
+        });
+
+        // Create Poll
+        document.getElementById('createBtn').addEventListener('click', async () => {
+            const question = document.getElementById('question').value.trim();
+            const options = Array.from(document.querySelectorAll('.option-input'))
+                .map(i => i.value.trim()).filter(v => v);
+
+            if (!question) { alert('Please enter a question'); return; }
+            if (options.length < 2) { alert('Please add at least 2 options'); return; }
+
+            const btn = document.getElementById('createBtn');
+            btn.disabled = true;
+            btn.textContent = 'Creating...';
+
+            try {
+                const res = await fetch(`${API_URL}/polls`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question, options, expiresInHours: 24, visibility: 'public' })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    const url = `https://pollpixie.com/p/${data.pollId}`;
+                    document.getElementById('pollUrlInput').value = url;
+                    document.getElementById('viewPollBtn').href = url;
+                    document.getElementById('createForm').style.display = 'none';
+                    document.getElementById('successState').style.display = 'block';
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (e) {
+                alert('Failed to create poll. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Create Free Poll';
+            }
+        });
+
+        // Copy URL
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const input = document.getElementById('pollUrlInput');
+            input.select();
+            document.execCommand('copy');
+            const btn = document.getElementById('copyBtn');
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+
+        // Reset Form
+        function resetForm() {
+            document.getElementById('question').value = '';
+            document.getElementById('optionsContainer').innerHTML = `
+                <div class="option-row"><input type="text" class="option-input" placeholder="Option 1" maxlength="100"></div>
+                <div class="option-row"><input type="text" class="option-input" placeholder="Option 2" maxlength="100"></div>
+            `;
+            document.getElementById('createForm').style.display = 'block';
+            document.getElementById('successState').style.display = 'none';
+            document.getElementById('question').focus();
+        }
+    </script>
+
+    <script src="/contact-widget.js" data-app="Free Polls" data-accent="#8b5cf6"></script>
+
+    <script>
+    window.TRANSLATIONS = {
+        es: {
+            // Nav
+            'nav.pricing': 'Precios',
+            'nav.faq': 'Preguntas frecuentes',
+            'nav.signin': 'Iniciar sesión',
+
+            // Hero
+            'hero.badge': 'Crea encuestas en menos de 10 segundos',
+            'hero.title': 'Creador de <span>encuestas gratis</span>',
+            'hero.subtitle': 'Sin registro. Sin inicio de sesión. Solo escribe tu pregunta y comparte.',
+
+            // Form
+            'form.question.label': 'Tu pregunta',
+            'form.question.placeholder': '¿Qué hacemos para el almuerzo del equipo?',
+            'form.options.label': 'Opciones',
+            'form.addOption': '+ Agregar opción',
+            'form.createBtn': 'Crear encuesta gratis',
+
+            // Success
+            'success.title': '¡Encuesta creada!',
+            'success.subtitle': 'Comparte este enlace para empezar a recopilar votos',
+            'success.copy': 'Copiar',
+            'success.viewPoll': 'Ver encuesta',
+            'success.createAnother': 'Crear otra',
+            'success.upsell': '¿Necesitas estadísticas y más funciones? <a href="https://pollpixie.com" style="color: var(--pixie-pink);">Regístrate en Poll Pixie</a>',
+
+            // Pricing
+            'pricing.badge': 'Mejorar plan',
+            'pricing.title': 'Saca más provecho de tus encuestas',
+            'pricing.subtitle': '¿Necesitas estadísticas, votos ilimitados o marca personalizada? Mejora a Poll Pixie Pro.',
+
+            // Free tier
+            'pricing.free.name': 'Gratis',
+            'pricing.free.period': '/para siempre',
+            'pricing.free.desc': 'Ideal para encuestas rápidas',
+            'pricing.free.f1': '<span class="check">&#10003;</span> Encuestas ilimitadas',
+            'pricing.free.f2': '<span class="check">&#10003;</span> Hasta 100 votos por encuesta',
+            'pricing.free.f3': '<span class="check">&#10003;</span> Duración de 24 horas',
+            'pricing.free.f4': '<span class="check">&#10003;</span> Votación anónima',
+            'pricing.free.f5': '<span class="check">&#10003;</span> Vista básica de resultados',
+            'pricing.free.btn': 'Plan actual',
+
+            // Pro tier
+            'pricing.pro.popular': 'Más popular',
+            'pricing.pro.name': 'Pro',
+            'pricing.pro.period': '/mes',
+            'pricing.pro.desc': 'Para usuarios avanzados',
+            'pricing.pro.f1': '<span class="check">&#10003;</span> Todo lo del plan Gratis',
+            'pricing.pro.f2': '<span class="check">&#10003;</span> <strong>Votos ilimitados</strong>',
+            'pricing.pro.f3': '<span class="check">&#10003;</span> Estadísticas avanzadas',
+            'pricing.pro.f4': '<span class="check">&#10003;</span> Expiración personalizada',
+            'pricing.pro.f5': '<span class="check">&#10003;</span> Exportar resultados (CSV/JSON)',
+            'pricing.pro.f6': '<span class="check">&#10003;</span> Quitar marca de agua',
+            'pricing.pro.btn': 'Obtener Pro',
+
+            // Business tier
+            'pricing.biz.name': 'Empresas',
+            'pricing.biz.period': '/mes',
+            'pricing.biz.desc': 'Para equipos de trabajo',
+            'pricing.biz.f1': '<span class="check">&#10003;</span> Todo lo del plan Pro',
+            'pricing.biz.f2': '<span class="check">&#10003;</span> Marca personalizada',
+            'pricing.biz.f3': '<span class="check">&#10003;</span> Colaboración en equipo',
+            'pricing.biz.f4': '<span class="check">&#10003;</span> Acceso a la API',
+            'pricing.biz.f5': '<span class="check">&#10003;</span> Integraciones con webhooks',
+            'pricing.biz.f6': '<span class="check">&#10003;</span> Soporte prioritario',
+            'pricing.biz.btn': 'Obtener Empresas',
+
+            // Pricing footer
+            'pricing.footer.trial': 'Todos los planes de pago incluyen 14 días de prueba gratis. No se requiere tarjeta de crédito.',
+            'pricing.footer.link': 'Ver todos los planes en Poll Pixie &rarr;',
+
+            // FAQ
+            'faq.title': 'Preguntas frecuentes',
+            'faq.q1': '¿Este creador de encuestas es realmente gratis?',
+            'faq.a1': '¡Sí! FreePollsApp es 100% gratis. Crea encuestas ilimitadas sin necesidad de registrarte. Para funciones avanzadas como estadísticas y votos ilimitados, mejora tu plan a través de Poll Pixie.',
+            'faq.q2': '¿Necesito crear una cuenta?',
+            'faq.a2': '¡No se necesita cuenta para encuestas básicas! Solo escribe tu pregunta, agrega opciones y comparte el enlace. Regístrate en Poll Pixie para guardar y gestionar tus encuestas.',
+            'faq.q3': '¿Las encuestas son anónimas?',
+            'faq.a3': 'Sí, todos los votos son anónimos por defecto. Los votantes no necesitan registrarse ni proporcionar información personal.',
+            'faq.q4': '¿Puedo ver los resultados en tiempo real?',
+            'faq.a4': '¡Por supuesto! Los resultados de la encuesta se actualizan en tiempo real a medida que llegan los votos.',
+            'faq.q5': '¿Cuál es la diferencia entre FreePollsApp y Poll Pixie?',
+            'faq.a5': 'FreePollsApp es el creador de encuestas rápido y gratuito. Poll Pixie es la plataforma completa con estadísticas, marca personalizada, votos ilimitados y funciones para equipos.',
+
+            // Footer
+            'footer.contact': 'Contáctanos',
+            'footer.feedback': 'Enviar comentarios',
+            'footer.support': 'Soporte',
+            'footer.brand': 'Un producto de <a href="https://snapitsaas.com">SnapIT Zoo</a>'
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
+</body>
+</html>
